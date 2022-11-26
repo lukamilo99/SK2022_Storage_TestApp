@@ -9,7 +9,8 @@ public class Main {
     public static void main(String[] args){
 
         try {
-            Class.forName("raf.gdrive.GoogleDriveStorage");
+            //Class.forName("raf.gdrive.GoogleDriveStorage");
+            Class.forName("storage.StorageImpl");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

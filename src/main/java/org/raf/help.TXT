@@ -14,7 +14,7 @@ download(path to file, destination) - download path destination
 rename(path to file, new name) - rename path File2.TXT
 ----------------------------------------------------------------------------------------------
 Filter:
-na = returns name
+n = returns name
 si = returns size
 ct = returns creation time
 mt = returns modification time
@@ -22,8 +22,8 @@ asc = sort ascending by first argument
 desc = sort descending by first argument
 all or "" = returns everything sorted ascending by name
 |examples of filter|
-na si asc (returns name, size sorted ascending by name)
-si na mt desc (returns size, name, mod. time sorted descending by size)
+n si asc (returns name, size sorted ascending by name)
+si n mt desc (returns size, name, mod. time sorted descending by size)
 ------------------------------------------------------------------------------------------------
 getFrom(path to file, filter) - getFrom path filter
 getFromSub(path to file, filter) - getFromSub path filter
