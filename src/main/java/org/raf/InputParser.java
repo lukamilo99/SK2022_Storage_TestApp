@@ -3,13 +3,17 @@ package org.raf;
 import storage.components.AbstractStorage;
 import storage.components.FileExtension;
 import storage.components.StorageUtils;
+import storage.exceptions.ExtensionNotAllowedException;
+import storage.exceptions.NotEnoughSpaceException;
+import storage.exceptions.TooManyFilesException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class InputParser {
 
-    public static boolean parse(String input, AbstractStorage storage){
+    public static void parse(String input, AbstractStorage storage) throws ExtensionNotAllowedException, TooManyFilesException, NotEnoughSpaceException {
         String[] inputParts = input.split(" ");
         String command = inputParts[0];
         String fileId;
@@ -27,11 +31,12 @@ public class InputParser {
         List<String> listOfNames = new ArrayList<>();
         Map<FileExtension, Boolean> mapOfExtensions = new HashMap<>();
 
-        try{
-            switch(command) {
+        try {
+            switch (command) {
                 case "help":
-                    File file = new File("C:\\Users\\Luka\\Desktop\\SK2022_Storage_TestApp\\src\\main\\java\\org\\raf\\help.TXT");
+                    File file = new File("/help.TXT");
                     Scanner myReader = new Scanner(file);
+
                     while (myReader.hasNextLine()) {
                         String data = myReader.nextLine();
                         System.out.println(data);
@@ -55,10 +60,10 @@ public class InputParser {
                     break;
                 case "fileWithName":
                     listOfNames.clear();
-                    for (int i = 2; i < inputParts.length; i++) {
-                        listOfNames.add(inputParts[i]);
-                    }
+
+                    listOfNames.addAll(Arrays.asList(inputParts).subList(2, inputParts.length));
                     path = inputParts[1];
+
                     System.out.println(storage.containsFileWithName(path, listOfNames));
                     break;
                 case "getFromStr":
@@ -111,11 +116,8 @@ public class InputParser {
                     break;
                 case "upload":
                     listOfFilesForUpload.clear();
-                    for (int i = 1; i < inputParts.length - 1; i++) {
-                        listOfFilesForUpload.add(inputParts[i]);
-                    }
+                    listOfFilesForUpload.addAll(Arrays.asList(inputParts).subList(1, inputParts.length - 1));
                     path = inputParts[inputParts.length - 1];
-
                     storage.uploadFile(listOfFilesForUpload, path);
                     System.out.println("Successfully uploaded");
                     break;
@@ -127,17 +129,17 @@ public class InputParser {
                 case "delAllDirs":
                     path = inputParts[1];
                     storage.deleteAllDirectoriesFromParentDirectory(path);
-                    System.out.println("Successfully deleted!");
+                    System.out.println("Successfully deleted");
                     break;
                 case "delAllFiles":
                     path = inputParts[1];
                     storage.deleteAllFilesFromDirectory(path);
-                    System.out.println("Successfully deleted!");
+                    System.out.println("Successfully deleted");
                     break;
                 case "del":
                     path = inputParts[1];
                     storage.deleteFile(path);
-                    System.out.println("Successfully deleted!");
+                    System.out.println("Successfully deleted");
                     break;
                 case "mkfile":
                     path = inputParts[1];
@@ -173,14 +175,13 @@ public class InputParser {
                     System.out.println("Successfully updated configuration");
                     break;
                 case "end":
-                    return false;
+                    System.out.println("Goodbye");
+                    return;
                 default:
                     System.out.println("There is no such command!");
-                    return false;
             }
-        }catch (Exception exception){
-            System.out.println("Check your input!");
+        }catch (ExtensionNotAllowedException | NotEnoughSpaceException | FileNotFoundException | TooManyFilesException exception){
+            System.out.println(exception.getMessage());
         }
-        return false;
     }
 }

@@ -2,6 +2,10 @@ package org.raf;
 
 import storage.StorageManager;
 import storage.components.AbstractStorage;
+import storage.exceptions.ExtensionNotAllowedException;
+import storage.exceptions.NotEnoughSpaceException;
+import storage.exceptions.TooManyFilesException;
+
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
@@ -20,7 +24,12 @@ public class Main {
 
         while(true){
             String input = scanner.nextLine();
-            InputParser.parse(input, storage);
+
+            try {
+                InputParser.parse(input, storage);
+            } catch (ExtensionNotAllowedException | NotEnoughSpaceException | TooManyFilesException e) {
+                throw new RuntimeException(e.getMessage());
+            }
 
             if(input.equals("end")) break;
         }
