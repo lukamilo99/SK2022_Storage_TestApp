@@ -6,7 +6,7 @@ mkdir(path to parent, name, file limit of directory) - mkdir path Folder1 10
 mkdirs(path to parent, number of folders to be created) - mkdirs path 10 (default name and limit 10)
 del(path to file to delete) - del path
 delAllFiles(path to folder from which to delete) - delAllFiles path
-dellAllDirspath to folder from which to delete) - dellAllDirs path
+dellAllDirs(path to folder from which to delete) - dellAllDirs path
 dellAll(path to folder from which to delete) - delAll path
 move(path to file, path to destination) - move path destination
 upload(list of file location to be uploaded, path to destination) - upload C:\Users\User\file1.TXT C:\Users\User\file2.TXT destination
