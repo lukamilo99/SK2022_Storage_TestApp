@@ -1,11 +1,10 @@
 package org.raf;
 
-import storage.storageComponents.AbstractStorage;
-import storage.storageComponents.FileExtension;
-import storage.storageComponents.StorageUtils;
+import storage.components.AbstractStorage;
+import storage.components.FileExtension;
+import storage.components.StorageUtils;
 
 import java.io.File;
-import java.io.FileReader;
 import java.util.*;
 
 public class InputParser {
@@ -31,7 +30,7 @@ public class InputParser {
         try{
             switch(command) {
                 case "help":
-                    File file = new File("C:\\Users\\LUKA\\Desktop\\StorageApp\\src\\main\\java\\org\\raf\\help.TXT");
+                    File file = new File("C:\\Users\\Luka\\Desktop\\SK2022_Storage_TestApp\\src\\main\\java\\org\\raf\\help.TXT");
                     Scanner myReader = new Scanner(file);
                     while (myReader.hasNextLine()) {
                         String data = myReader.nextLine();

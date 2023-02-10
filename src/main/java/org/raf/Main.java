@@ -1,7 +1,7 @@
 package org.raf;
 
 import storage.StorageManager;
-import storage.storageComponents.AbstractStorage;
+import storage.components.AbstractStorage;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
@@ -9,8 +9,8 @@ public class Main {
     public static void main(String[] args){
 
         try {
-            //Class.forName("raf.gdrive.GoogleDriveStorage");
-            Class.forName("storage.StorageImpl");
+            Class.forName("raf.gdrive.components.GoogleDriveStorage");
+            //Class.forName("storage.StorageImpl");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
