@@ -21,12 +21,15 @@ public class Main {
 
         AbstractStorage storage = StorageManager.getStorage();
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        InputParser inputParser = new InputParser();
+
+        System.out.println("Welcome!");
 
         while(true){
             String input = scanner.nextLine();
 
             try {
-                InputParser.parse(input, storage);
+                inputParser.parse(input, storage);
             } catch (ExtensionNotAllowedException | NotEnoughSpaceException | TooManyFilesException e) {
                 throw new RuntimeException(e.getMessage());
             }
