@@ -7,3 +7,9 @@ The console application that allows user to interact with [implementation](https
 ## Motivation
 
 This project is a part of a university assignment, which involves developing a library, implementing it, and creating a console application to work with the implementation.
+
+# Installation
+```
+mvn clean package
+java -jar StorageApp-1.0-SNAPSHOT.jar
+```
