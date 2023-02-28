@@ -10,6 +10,6 @@ This project is a part of a university assignment, which involves developing a l
 
 # Installation
 ```
-mvn clean package
-java -jar StorageApp-1.0-SNAPSHOT.jar
+1. mvn clean package
+2. java -jar StorageApp-1.0-SNAPSHOT.jar
 ```
